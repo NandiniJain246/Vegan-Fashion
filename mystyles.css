@@ -1,0 +1,81 @@
+body
+A:link {color:black;}
+A:visited {color:rgb(142, 155, 172);}
+A:hover {color:green;}
+A{
+    font-weight: normal;
+    font-family: Verdana;}
+
+body {
+    background-color:white;
+    background-image: url("VFW/backgroun4.jpg");
+background-attachment: fixed;}
+
+h1 {
+    color: black;
+    text-align: center;}
+
+p {
+    font-family: Verdana;
+    font-size: 10px;}
+.round{
+    border-radius: 7px;
+}
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 33.33%;
+    padding: 5px;
+}
+table, th, td {
+    border: 0px solid;
+    border-collapse: collapse;
+    text-align: center;
+    align-content: center;
+  }
+  table.center {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+  a{
+      text-decoration:none;
+  }
+  th,td{
+    padding:"45px";
+    font-family: Verdana;
+    align-content: center;
+}
+.title {position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+}
+ul  {
+    float:left;
+    list-style-type: none;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-bottom: 25px;
+}
+ul li{
+    display: inline-block;
+}
+ul li a{
+    text-decoration: non e;
+    color: black;
+    background-color: white;
+    border: 1px solid transparent;
+    padding: 5px 20px;}
+ul li a:hover{
+    color: white;
+    background-color: grey;
+    transition: 0.5s;}
+ul li.active a{      
+    color: white;
+    background-color: black;}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content= "width=device-width, inital-scale=1.0">
+        <link rel='icon' href='faviconleaf.png' type='image/png'/ >
+        <title>Volunteer form</title>
+        <style>
+            table,th,td{  
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+        </style>
+     </head>
+<body>
+    <table class="table" align="left">
+        <tr>
+            <td>
+            <div class="button">
+                <button onclick="document.location='week.html'">
+                    Go back
+                 </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <form action="thanks.html" method="GET">
+        <table width="700" align="center" border="2px">
+            <tr align="center">
+                <td colspan="2">
+                    <h1> VFW Volunteer SignUp Form </h1>
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    <label for="fname"> First name:</label>
+                </td>
+                <td>   
+                    <input type="text" id="fname" name="fname"  
+                    placeholder="Your first name here.." required>
+                   
+
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    <label for="lname"> Last name:</label>
+                </td>
+                <td>   
+                    <input type="text" id="lname" name="lname"
+                    placeholder="Your last name here.." required>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                   Gender:
+                </td>
+                <td>  
+                    <label for="Male">Male</label>
+                    <input type="radio" id="Male" name="gender" value="Male" required>
+                    <label for="Female">Female</label>
+                    <input type="radio" id="Female" name="gender" value="Female" required>
+                    <label for="Other">Other</label>
+                    <input type="radio" id="Other" name="gender" value="Other" required>
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    <label for="Birthday">  DOB:</label>
+                </td>
+                <td>   
+                    <input type="date" id="Birthday" name="Birthday"    
+                    placeholder="Your birthday.." required>
+              
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    <label for="Phone"> Phone:</label>
+                </td>
+                <td>   
+                    <input type="number" id="Phone" name="Phone"    
+                    placeholder="Your phone number.." required>
+              
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    <label for="Email"> Email:</label>
+                </td>
+                <td>   
+                    <input type="email" id="Email" name="Email"    
+                    placeholder="Your email.." required>
+              
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    <label for="Social Security"> Social Security Number:</label>
+                </td>
+                <td>   
+                    <input type="password" id="password" name="password"    
+                    placeholder="Your Social Security No.." required>
+              
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    <label for="Country"> Country</label>
+                </td>
+                <td>   
+                    <select name="Country" id="Country" required>
+                        <option value="Australia">Australia</option>
+                        <option value="India" selected>India </option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Korea">Korea</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="USA">United States of America</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                  Have you volunteered at a Fashion Show before?
+                </td>
+                <td>  
+                    <label for="Yes">Yes</label>
+                    <input type="radio" id="Yes,I have" name="Experience" value="Yes" required>
+                    <label for="No">No</label>
+                    <input type="radio" id="No,I have not" name="Experience" value="No" required>
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    Your interest(s) (Check all that apply)
+                </td>
+                <td>  
+                    <label for="Hair">Hair</label>
+                    <input type="checkbox" id="Interest 1" name="Interest 1" value="Hair">
+                    <label for="Makeup">Makeup</label>
+                    <input type="checkbox" id="Interest 2" name="Interest 2" value="Makeup">
+                    <label for="Styling">Styling</label>
+                    <input type="checkbox" id="Interest 3" name="Interest 3" value="Styling">
+                    <label for="Photography">Photography</label>
+                    <input type="checkbox" id="Interest 4" name="Interest 4" value="Photography">
+                    <label for="Registration">Registration</label>
+                    <input type="checkbox" id="Interest 5" name="Interest 5" value="Registration">
+                    <label for="Production">Production</label>
+                    
+                   
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    Why do you want to volunteer for Vegan Fashion Week?
+                </td>
+                <td>
+                    <label for="subject"> </label>
+                    <textarea id="subject" name="subject" placeholder="Write something.." cols="40" rows="2"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="vol">Hours per day available(1-4):</label>
+                </td>
+                <td>
+                    <input type="range" id="vol" name="vol" min="1" max="4">
+
+                </td>
+            </tr>
+            <tr>
+                <td><label for="favcolor">Preferred Tshirt colour:</label> </td>
+                <td>
+                    <input type="color" id="favcolor" name="favcolor">
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    <label for="photo"> Upload your photo</label>
+                </td>
+                <td>   
+                    <input type="file" id="photo" name="photo">
+                </td>
+            </tr>
+            <tr>
+                    <td>   
+                        
+                    </td>
+                    <td>  
+                        <label for="Acceptance">I understand that I am applying for an unpaid position.</label>
+                        <input type="checkbox" id="Acceptance" name="Acceptance" value="Acceptance" checked>
+                    </td>  
+            </tr>
+            <tr>
+                <td>   
+                    <input type="reset">
+                </td>
+                <td>   
+                    <input type="submit"
+                    <button type="submit"> </button>
+                </td>
+               
+            </tr>
+        </table>
+        <input type="hidden" name="code" value="hidden">
+    </form>
+</body>
+</html>
