@@ -1,0 +1,26 @@
+(function($){var payment={form:null,scriptName:'CRM.payment',getTotalAmount:function(){var totalAmount=0.0;if(CRM.payment.isEventAdditionalParticipants()){totalAmount=null;}
+else if(document.getElementById('totalTaxAmount')!==null){totalAmount=parseFloat(this.calculateTaxAmount());this.debugging(this.scriptName,'Calculated amount using internal calculateTaxAmount()');}
+else if(typeof calculateTotalFee=='function'){totalAmount=parseFloat(calculateTotalFee());}
+else if(this.getIsDrupalWebform()){$('.line-item:visible','#wf-crm-billing-items').each(function(){totalAmount+=parseFloat($(this).data('amount'));});}
+else if(document.getElementById('total_amount')){totalAmount=parseFloat(document.getElementById('total_amount').value);}
+this.debugging(this.scriptName,'getTotalAmount: '+totalAmount);return totalAmount;},calculateTaxAmount:function(){var totalTaxAmount=0;if(document.getElementById('totalTaxAmount')===null){return totalTaxAmount;}
+if(document.getElementById('totalTaxAmount').textContent.length===0){totalTaxAmount=document.getElementById('total_amount').value;}
+else{totalTaxAmount=document.getElementById('totalTaxAmount').textContent.split(' ').pop();}
+return totalTaxAmount;},getCurrency:function(defaultCurrency){var currency=defaultCurrency;if(this.form.querySelector('#currency')){currency=this.form.querySelector('#currency').value;}
+this.debugging(this.scriptName,'Currency is: '+currency);return currency;},isEventAdditionalParticipants:function(){if((document.getElementById('additional_participants')!==null)&&(document.getElementById('additional_participants').value.length!==0)){this.debugging(this.scriptName,'We don\'t know the final price - registering additional participants');return true;}
+return false;},getIsDrupalWebform:function(){if(this.form!==null){return this.form.classList.contains('webform-client-form')||this.form.classList.contains('webform-submission-form');}
+return false;},getBillingForm:function(){var billingFormID=$('div#card-element').closest('form').prop('id');if((typeof billingFormID==='undefined')||(!billingFormID.length)){billingFormID=$('input[name=hidden_processor]').closest('form').prop('id');}
+return document.getElementById(billingFormID);},getBillingSubmit:function(){var submit=null;if(CRM.payment.getIsDrupalWebform()){submit=this.form.querySelectorAll('[type="submit"].webform-submit');if(!submit){submit=this.form.querySelectorAll('[type="submit"].webform-button--submit');}}
+else{submit=this.form.querySelectorAll('[type="submit"].validate');}
+if(submit.length===0){this.debugging(this.scriptName,'No submit button found!');}
+return submit;},getIsRecur:function(){var isRecur=false;if(this.getIsDrupalWebform()){if(($('input[data-civicrm-field-key$="contribution_installments"]').length!==0&&$('input[data-civicrm-field-key$="contribution_installments"]').val()>1)||($('input[data-civicrm-field-key$="contribution_frequency_interval"]').length!==0&&$('input[data-civicrm-field-key$="contribution_frequency_interval"]').val()>0)){isRecur=true;}}
+if(document.getElementById('is_recur')!==null){if(document.getElementById('is_recur').type=='hidden'){isRecur=(document.getElementById('is_recur').value==1);}
+else{isRecur=Boolean(document.getElementById('is_recur').checked);}}
+else if($('input[name="auto_renew"]').length!==0){if($('input[name="auto_renew"]').prop('checked')){isRecur=true;}
+else if($('input[name="auto_renew"]').attr('type')=='hidden'){isRecur=true;}
+else{isRecur=Boolean($('input[name="auto_renew"]').checked);}}
+this.debugging(this.scriptName,'isRecur is '+isRecur);return isRecur;},debugging:function(scriptName,errorCode){if((typeof(CRM.vars.stripe)==='undefined')||(Boolean(CRM.vars.stripe.jsDebug)===true)){console.log(new Date().toISOString()+' '+scriptName+': '+errorCode);}}};if(typeof CRM.payment==='undefined'){CRM.payment=payment;}
+else{if(CRM.payment.hasOwnProperty('scriptName')&&(CRM.payment.scriptName==='CRM.payment')){return;}
+if(CRM.payment.hasOwnProperty('getTotalAmount')){delete(payment.getTotalAmount);payment.debugging(payment.scriptName,'Deferring to client getTotalAmount function');}
+$.extend(CRM.payment,payment);}
+document.addEventListener('DOMContentLoaded',function(){CRM.payment.debugging(CRM.payment.scriptName,'loaded via DOMContentLoaded');CRM.payment.form=CRM.payment.getBillingForm();});$(document).ajaxComplete(function(event,xhr,settings){if((settings.url.match("civicrm(\/|%2F)payment(\/|%2F)form")!==null)||(settings.url.match("civicrm(\/|\%2F)contact(\/|\%2F)view(\/|\%2F)participant")!==null)){CRM.payment.debugging(CRM.payment.scriptName,'triggered via ajax');CRM.payment.form=CRM.payment.getBillingForm();}});}(CRM.$));
